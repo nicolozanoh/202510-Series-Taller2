@@ -84,9 +84,15 @@
 \begin{enumerate}[label = \emph{\alph*})]
     \item {Construya una serie mensual hist\'orica con la TRM promedio mensual desde diciembre del año 1991 hasta marzo del año 2025. Grafiquen la serie hist\'orica de la TRM construida y analicen los hechos m\'as relevantes que han generado variaciones en la TRM en el presente siglo. No es necesario un an\'alisis exhaustivo, s\'olo los principales hechos asociados a cambios fuertes en la serie observada.}
         \begin{tcolorbox}[title=Soluci\'on 2.a]
-            
+            \begin{figure}[H]
+                \centering
+                \includegraphics[width=0.9\linewidth]{output/graf_trm.png}\
+                \caption{Serie TRM}
+                \label{fig:serie_trm}
+            \end{figure}
         \end{tcolorbox}
     \item {Estimen el retorno mensual de la TRM:}
+        \input{output/retorno_promedio}
     \begin{equation}
         r_t = (\ln(TRM_t) - \ln(TRM_{t-1})) \times 100
     \end{equation}
