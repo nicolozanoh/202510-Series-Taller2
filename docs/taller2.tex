@@ -116,7 +116,7 @@
                 \centering
                 \includegraphics[width=0.9\linewidth]{output/subplot_retornos.png}
                 \caption{Retornos}
-                \label{fig:retorno}
+                \label{fig:retornos}
             \end{figure}
         \end{tcolorbox}
 \end{enumerate}
@@ -139,7 +139,7 @@
                 \centering
                 \includegraphics[width=0.9\linewidth]{output/acf_pacf_retornos.png}
                 \caption{Autocorrelaciones de los Retornos Mensuales}
-                \label{fig:retorno}
+                \label{fig:corr_ret}
             \end{figure}
             \input{output/autoarima_aic}
             \input{output/autoarima_bic}
@@ -150,13 +150,25 @@
                 \centering
                 \includegraphics[width=0.9\linewidth]{output/graf_resid.png}
                 \caption{Gr\'afico de los Residuales del modelo ARMA(0,1)}
-                \label{fig:retorno}
+                \label{fig:residuales}
+            \end{figure}
+             \begin{figure}[H]
+                \centering
+                \includegraphics[width=0.9\linewidth]{output/acf_pacf_residuales.png}
+                \caption{Autocorrelaciones de los Residuales del modelo ARMA(0,1)}
+                \label{fig:corr_resid}
             \end{figure}
             \begin{figure}[H]
                 \centering
                 \includegraphics[width=0.9\linewidth]{output/hist_resid.png}
                 \caption{Histograma de los Residuales del modelo ARMA(0,1)}
-                \label{fig:retorno}
+                \label{fig:hist_resid}
+            \end{figure}
+            \begin{figure}[H]
+                \centering
+                \includegraphics[width=0.9\linewidth]{output/qq_plot_residuales.png}
+                \caption{QQ-Plot de los Residuales del modelo ARMA(0,1)}
+                \label{fig:qq_resid}
             \end{figure}
         \end{tcolorbox}
     \item {Pruebe si es necesario incluir din\'amicas de varianza condicional. De ser necesario, est\'imelas y presente sus resultados (puede probar varios modelos, pero debe presentar y continuar el desarrollo del taller con uno solo). Justifique con estad\'isticas y criterios de informaci\'on el modelo estimado.}
