@@ -176,11 +176,30 @@
         \end{tcolorbox}
     \item {Pruebe si es necesario incluir din\'amicas de varianza condicional. De ser necesario, est\'imelas y presente sus resultados (puede probar varios modelos, pero debe presentar y continuar el desarrollo del taller con uno solo). Justifique con estad\'isticas y criterios de informaci\'on el modelo estimado.}
         \begin{tcolorbox}[title=Soluci\'on 2.f]
-            
+            \begin{figure}[H]
+                \centering
+                \includegraphics[width=0.9\linewidth]{output/graf_resid2.png}
+                \caption{Gr\'afica de Residuales al Cuadrado del modelo ARMA(0,1)}
+                \label{fig:graf_resid2}
+            \end{figure}
+
+            \begin{figure}[H]
+                \centering
+                \includegraphics[width=0.9\linewidth]{output/acf_residuales2.png}
+                \caption{Autocorrelaci\'on de Residuales al Cuadrado del modelo ARMA(0,1)}
+                \label{fig:acf_resid2}
+            \end{figure}
+
+            \begin{figure}[H]
+                \centering
+                \includegraphics[width=0.9\linewidth]{output/hist_resid.png}
+                \caption{Histograma de los Residuales del modelo ARMA(0,1)}
+                \label{fig:hist_resid}
+            \end{figure}
         \end{tcolorbox}
     \item {Pruebe si su modelo captura correctamente las din\'amicas de varianza. Realice y documente las pruebas necesarias.}
         \begin{tcolorbox}[title=Soluci\'on 2.g]
-            
+            \input{output/prueba_q_residuales2}
         \end{tcolorbox}
 \end{enumerate}
 
