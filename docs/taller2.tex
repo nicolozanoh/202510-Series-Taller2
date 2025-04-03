@@ -36,6 +36,7 @@
 \usepackage{epigraph}
 \usepackage{booktabs}
 \usepackage{xcolor}
+\usepackage{hyperref}
 \usepackage[backend=biber, style=apa]{biblatex}
 \addbibresource{ref.bib}
 
@@ -145,7 +146,18 @@
         \end{tcolorbox}
     \item {Construya y grafique la serie de residuales. Justifique que se trata de ruido blanco. Documente pruebas de normalidad y aquellas relevantes para justificar los supuestos de su modelo.}
         \begin{tcolorbox}[title=Soluci\'on 2.e]
-            
+            \begin{figure}[H]
+                \centering
+                \includegraphics[width=0.9\linewidth]{output/graf_resid.png}
+                \caption{Gr\'afico de los Residuales del modelo ARMA(0,1)}
+                \label{fig:retorno}
+            \end{figure}
+            \begin{figure}[H]
+                \centering
+                \includegraphics[width=0.9\linewidth]{output/hist_resid.png}
+                \caption{Histograma de los Residuales del modelo ARMA(0,1)}
+                \label{fig:retorno}
+            \end{figure}
         \end{tcolorbox}
     \item {Pruebe si es necesario incluir din\'amicas de varianza condicional. De ser necesario, est\'imelas y presente sus resultados (puede probar varios modelos, pero debe presentar y continuar el desarrollo del taller con uno solo). Justifique con estad\'isticas y criterios de informaci\'on el modelo estimado.}
         \begin{tcolorbox}[title=Soluci\'on 2.f]
