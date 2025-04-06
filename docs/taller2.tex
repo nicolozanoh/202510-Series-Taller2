@@ -10,6 +10,7 @@
 \usepackage{graphicx}
 \usepackage{float}
 \usepackage{mathrsfs}
+\usepackage{multicol}
 \usepackage{array}
 \usepackage{caption}
 \usepackage{subcaption}
@@ -224,10 +225,18 @@ Al observar la gráfica de los residuales del modelo, se puede apreciar que no h
         \begin{tcolorbox}[title=Soluci\'on 2.g]
             \begin{figure}[H]
                 \centering
-                \includegraphics[width=0.9\linewidth]{output/acf_residuales2.png}
-                \caption{Autocorrelaci\'on Residuales al Cuadrado}
-                \label{fig:acf_resid2}
+                \includegraphics[width=0.9\linewidth]{output/graf_resistd.png}
+                \caption{Gr\'afico Residuales estandarizados}
+                \label{fig:graf_residstd}
             \end{figure}
+
+            \begin{figure}[H]
+                \centering
+                \includegraphics[width=0.9\linewidth]{output/graf_resistd2.png}
+                \caption{Gr\'afico Residuales Estandarizados al Cuadrado}
+                \label{fig:graf_residstd2}
+            \end{figure}
+            \input{output/q_resid2}
         \end{tcolorbox}
 \end{enumerate}
 
