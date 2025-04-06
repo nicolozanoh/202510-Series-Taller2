@@ -7,12 +7,20 @@
 \usepackage{dcolumn}
 \usepackage{geometry}
 \usepackage{breqn}
+\usepackage{rotating}
 \usepackage{graphicx}
+\usepackage{color,soul}
+\usepackage[utf8]{inputenc}
+\usepackage{lscape}
+\usepackage{pdflscape}
 \usepackage{float}
 \usepackage{mathrsfs}
 \usepackage{multicol}
 \usepackage{array}
+\usepackage{placeins}
+\usepackage{booktabs,multirow}
 \usepackage{caption}
+\usepackage{amsfonts}
 \usepackage{subcaption}
 \usepackage[spanish,es-lcroman]{babel}
 \usepackage{enumerate}
@@ -36,7 +44,7 @@
 \DeclareUnicodeCharacter{2212}{-}
 \usepackage{epigraph}
 \usepackage{booktabs}
-\usepackage{xcolor}
+\usepackage[table]{xcolor}
 \usepackage[colorlinks = true]{hyperref}
 \usepackage[backend=biber, style=apa]{biblatex}
 \addbibresource{ref.bib}
@@ -236,7 +244,9 @@ Al observar la gráfica de los residuales del modelo, se puede apreciar que no h
                 \caption{Gr\'afico Residuales Estandarizados al Cuadrado}
                 \label{fig:graf_residstd2}
             \end{figure}
+            
             \input{output/q_resid2}
+            
         \end{tcolorbox}
 \end{enumerate}
 
@@ -414,7 +424,23 @@ Con el objetivo de probar si es necesario incluir los componentes de tendencia y
             \end{figure}
         \end{tcolorbox}
 
-        
+    \begin{table}[H]
+\centering
+\scriptsize
+\begin{tabular}{lcccc}
+\hline
+\textbf{Modelo ARIMA} & \textbf{NBetas} & \textbf{LogLikelihood} & \textbf{AIC} & \textbf{BIC} \\
+\hline
+ARIMA(1,0,1) & 3 & 68.686 & -131.37 & -123.56 \\
+ARIMA(1,0,2) & 4 & 68.7 & -129.4 & -118.98 \\
+ARIMA(2,0,8) & 11 & 74.011 & -126.02 & -97.365 \\
+ARIMA(2,0,9) & 12 & 74.044 & -124.09 & -92.826 \\
+\hline
+\end{tabular}
+\caption{Comparación de modelos ARIMA con diferentes criterios de selección}
+\label{tab:modelos_arima}
+\end{table}
+ 
         
     \item {Construya y grafique los residuales. Justifique que se trata de ruido blanco. De ser necesario, documente las pruebas que le dan validez a sus resultados.}
         \begin{tcolorbox}[title=Soluci\'on 3.f]
