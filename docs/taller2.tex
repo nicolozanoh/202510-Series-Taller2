@@ -7,12 +7,20 @@
 \usepackage{dcolumn}
 \usepackage{geometry}
 \usepackage{breqn}
+\usepackage{rotating}
 \usepackage{graphicx}
+\usepackage{color,soul}
+\usepackage[utf8]{inputenc}
+\usepackage{lscape}
+\usepackage{pdflscape}
 \usepackage{float}
 \usepackage{mathrsfs}
 \usepackage{multicol}
 \usepackage{array}
+\usepackage{placeins}
+\usepackage{booktabs,multirow}
 \usepackage{caption}
+\usepackage{amsfonts}
 \usepackage{subcaption}
 \usepackage[spanish,es-lcroman]{babel}
 \usepackage{enumerate}
@@ -36,7 +44,7 @@
 \DeclareUnicodeCharacter{2212}{-}
 \usepackage{epigraph}
 \usepackage{booktabs}
-\usepackage{xcolor}
+\usepackage[table]{xcolor}
 \usepackage[colorlinks = true]{hyperref}
 \usepackage[backend=biber, style=apa]{biblatex}
 \addbibresource{ref.bib}
@@ -82,7 +90,7 @@
         \end{tcolorbox}
     \item {¿De acuerdo a la lectura, cu\'ales son las caracter\'isticas de los datos financieros y macroecon\'omicos que los modelos ARCH pueden capturar?}
         \begin{tcolorbox}[title=Soluci\'on 1.b]
-            
+            De acuerdo con la lectura de Robert Engle, los modelos ARCH (Autoregressive Conditional Heteroskedasticity) fueron desarrollados para capturar dinámicas fundamentales que caracterizan a los datos financieros y macroeconómicos, las cuales no pueden ser abordadas por modelos tradicionales con varianza constante. Una de las principales características que estos modelos capturan son los clusters de volatilidad donde los períodos de alta volatilidad tienden a ser seguidos por otros de alta volatilidad, y lo mismo ocurre con los períodos de calma, lo cual es ampliamente observado en los mercados financieros. Por otro lado, el modelo logra capturar la impredecibilidad de los movimientos del mercado, lo que permite realizar pronósticos teniendo en cuenta la evolución futura de la volatilidad.  Asimismo, esto representa la presencia de valores extremos en los datos de retornos, lo que significa que pueden modelar la ocurrencia de eventos poco comunes de colas pesadas (fat tails) en la distribución de los errores, representando así una mayor probabilidad de shocks severos en comparación con una distribución normal. Por otro lado, estos modelos reconocen que la varianza de los retornos no es constante a lo largo del tiempo y puede ser influenciada por la información pasada, capturando así efectos de heterocedasticidad condicional en las series temporales e incorporando la dependencia temporal en la volatilidad. 
         \end{tcolorbox}
 \end{enumerate}
 
@@ -236,7 +244,9 @@ Al observar la gráfica de los residuales del modelo, se puede apreciar que no h
                 \caption{Gr\'afico Residuales Estandarizados al Cuadrado}
                 \label{fig:graf_residstd2}
             \end{figure}
+            
             \input{output/q_resid2}
+            
         \end{tcolorbox}
 \end{enumerate}
 
@@ -245,7 +255,12 @@ Al observar la gráfica de los residuales del modelo, se puede apreciar que no h
 \begin{enumerate}[label = \emph{\alph*})]\setcounter{enumi}{7}
     \item {Realice el pron\'ostico punto para abril del año 2025 tanto de los retornos como de la varianza. Reporte el pron\'ostico para los dos casos e interprete los dos resultados (no se pide realizar el pronostic\'o a mano, puede usar los comandos necesarios para realizar el pron\'ostico 1 paso adelante).}
         \begin{tcolorbox}[title=Soluci\'on 2.h]
-            
+            \begin{figure}[H]
+                \centering
+                \includegraphics[width=0.9\linewidth]{output/hist.png}
+                \caption{Gr\'afico Residuales Estandarizados al Cuadrado}
+                \label{fig:graf_residstd2}
+            \end{figure}
         \end{tcolorbox}
     \item {Con el comando apropiado simule mil pron\'osticos del retorno mensual de la TRM para el mes de abril del año 2025. Haga una gr\'afica con su estimaci\'on puntual y con la funci\'on de densidad generada a partir de simulaciones de su modelo autoregresivo de media m\'ovil, indique en la gr\'afica el intervalo del 95\% de confianza: ¿Seg\'un su pron\'ostico, para el mes de abril del año 2025, ser\'ia mejor comprar todo lo relacionado con su viaje hoy o esperar el mes de abril? ¿Con los retornos esperados pronosticados usted espera una apreciaci\'on o una depreciaci\'on del peso frente al d\'olar?}
         \begin{tcolorbox}[title=Soluci\'on 2.i]
@@ -390,31 +405,49 @@ Con el objetivo de probar si es necesario incluir los componentes de tendencia y
             \begin{figure}[H]
                 \centering
                 \includegraphics[width=0.5\linewidth]{docs/Arima_1_0_1.png}
-                \caption{Estimación modelo ARIMA(1,0,1)}
+                \caption{Estimación modelo ARIMAX(1,0,1)}
                 \label{fig:enter-label}
             \end{figure}
             \begin{figure}[H]
                 \centering
                 \includegraphics[width=0.5\linewidth]{docs/Arima_1_0_2.png}
-                \caption{Estimación modelo ARIMA(3,0,1}
+                \caption{Estimación modelo ARIMAX(2,0,1)}
                 \label{fig:enter-label}
             \end{figure}
             \begin{figure}[H]
                 \centering
                 \includegraphics[width=0.5\linewidth]{docs/Arima_1_0_8.png}
-                \caption{Estimación modelo ARIMA(2,0,8)}
+                \caption{Estimación modelo ARIMAX(2,0,8)}
                 \label{fig:enter-label}
             \end{figure}
 
             \begin{figure}[H]
                 \centering
                 \includegraphics[width=0.5\linewidth]{docs/Arima_2_0_9.png}
-                \caption{Estimación modelo ARIMA(2,0,9)}
+                \caption{Estimación modelo ARIMAX(2,0,9)}
                 \label{fig:enter-label}
             \end{figure}
         \end{tcolorbox}
 
-        
+    \begin{table}[H]
+\centering
+\scriptsize
+\begin{tabular}{lccccc|}
+\hline
+\textbf{Modelo ARIMA} & \textbf{NBetas} & \textbf{LogLikelihood} & \textbf{AIC} & \textbf{BIC} \\
+\hline
+ARIMA(1,0,1) & 3 & 68.686 & -131.37 & -123.56 \\
+ARIMA(1,0,2) & 4 & 68.7 & -129.4 & -118.98 \\
+ARIMA(2,0,8) & 11 & 74.011 & -126.02 & -97.365 \\
+ARIMA(2,0,9) & 12 & 74.044 & -124.09 & -92.826 \\
+\hline
+\end{tabular}
+\caption{Comparación de modelos ARIMAX con diferentes criterios de selección}
+\label{tab:modelos_arima}
+\end{table}
+
+Se proponen 4 posibles modelos ARIMAX con tendencia y estacionalidad, empezando desde las especificaciones más simples ARIMAX(1,0,1) y ARIMAX(2,0,1), y terminando con modelos más complejos como los ARIMAX(2,0,8) y ARIMAX(2,0,9), propuestos basándonos en el número de rezagos en la FAC y la PAC de los residuos de la serie fuera de las bandas de confianza. Se percibe que hay 8 residuos fuera de la banda de la FAC y 1 fuera de la banda de la PAC. Aunque se intentó plantear un modelo ARIMAX(1,0,8), esto no fue posible, por lo que se continuó con el siguiente posible p. Se observa que todas los modelos se ajustan relativamente bien a la serie del logaritmo de las remesas. Para determinar con qué modelo continuar la evaluación, se calcularon los estadísticos LogLikelihood, Akaike y Shwartz. Se establece que el modelo ARIMAX(2,0,9) es el mejor modelo, ya que tiene el menor AIC y BIC. 
+ 
         
     \item {Construya y grafique los residuales. Justifique que se trata de ruido blanco. De ser necesario, documente las pruebas que le dan validez a sus resultados.}
         \begin{tcolorbox}[title=Soluci\'on 3.f]
