@@ -209,7 +209,7 @@ Dados los criterios AIC y BIC calculados, el retorno mensual de la TRM puede seg
                 \label{fig:qq_resid}
             \end{figure}
 
-Al observar la gráfica de los residuales del modelo, se puede apreciar que no hay ningún comportamiento predecible  ni tendencias. Los autocorrelogramas hacen esto igual de evidente. La prueba de Ljung-Box hace claro que no hay autocorrelación estadísticamente significativa, es decir, no se rechaza que la serie de los residuales se comporta como ruido blanco. Adicionalmente, el histograma de los residuales muestra que la distribución de estos se aproxima a una distribución normal estándar.
+Al observar la gráfica de los residuales del modelo, se puede apreciar que no hay ningún comportamiento predecible  ni tendencias. Los autocorrelogramas hacen esto igual de evidente. La prueba de Ljung-Box hace claro que no hay autocorrelación estadísticamente significativa, es decir, no se rechaza que la serie de los residuales se comporta como ruido blanco. Adicionalmente, el histograma de los residuales como el QQ plot muestra que la distribución de estos se aproxima a una distribución normal estándar.
         \end{tcolorbox}
     \item {Pruebe si es necesario incluir din\'amicas de varianza condicional. De ser necesario, est\'imelas y presente sus resultados (puede probar varios modelos, pero debe presentar y continuar el desarrollo del taller con uno solo). Justifique con estad\'isticas y criterios de informaci\'on el modelo estimado.}
         \begin{tcolorbox}[title=Soluci\'on 2.f]
@@ -228,6 +228,9 @@ Al observar la gráfica de los residuales del modelo, se puede apreciar que no h
             \end{figure}
 
             \input{output/prueba_q_residuales2}
+
+            Al analizar el gr\'afico de los residuales al cuadrado, podemos ver algunos clusters de varianza, principalmente asociados con crisi econ\'omicas (2008, 2014, 2020). A su ve, la autocorrelaci\'on muestra varios rezagos que se salen de las bandas de confianza, lo que sugiere que hay componentes de la varianza que podemos predecir utilizando la historia de los residules. Finalmente se presenta la tabla con los resultados de una prueba Ljung-Box, donde se ve que la autocorrelci\'on es altamente significativa. Tiodos estos componentes hacen necesario la introducci\'on de din\'amicas de varianza para el modelo.\\
+            Para modelar la varianza se escogi\'o un modelo GARCH(1,1), en el siguiente punto se muestra que el modelo captura correctamente las din\'amicas de varianza.
         \end{tcolorbox}
     \item {Pruebe si su modelo captura correctamente las din\'amicas de varianza. Realice y documente las pruebas necesarias.}
         \begin{tcolorbox}[title=Soluci\'on 2.g]
@@ -240,12 +243,14 @@ Al observar la gráfica de los residuales del modelo, se puede apreciar que no h
 
             \begin{figure}[H]
                 \centering
-                \includegraphics[width=0.9\linewidth]{output/graf_resistd2.png}
-                \caption{Gr\'afico Residuales Estandarizados al Cuadrado}
+                \includegraphics[width=0.9\linewidth]{output/acf_residuales2.png}
+                \caption{Autocorrelaci\'on Residuales Estandarizados al Cuadrado}
                 \label{fig:graf_residstd2}
             \end{figure}
             
             \input{output/q_resid2}
+
+            En la primera gr\'afica se muestran los residuales estandarizado. Aqu\'i se evidencia que los residuales utilizando el modelo GARCH(1,1) siguen un comportamiento de ruido blanco. En la segunda gr\'afica se muestran los residuales estandarizados al cuadrado, aunque se ven algunos picos altos, no se evidencia ning\'un patron o compartamiento que de alg\'un indicio de autocorrelaci\'on. Finalmente, en la prueba Q, se evidencia que la autocorrelaci\'on con ninguno de los rezagos de los residuales es significativa, por lo que no hay evidencia estadistica para rechazar la hipotesis nula, de que esta medida es 0. Estos 3 sresultados en conjunto demuestran que el modelo GARCH(1,1) captura correctamente las din\'amicas de varianza.
             
         \end{tcolorbox}
 \end{enumerate}
@@ -255,19 +260,28 @@ Al observar la gráfica de los residuales del modelo, se puede apreciar que no h
 \begin{enumerate}[label = \emph{\alph*})]\setcounter{enumi}{7}
     \item {Realice el pron\'ostico punto para abril del año 2025 tanto de los retornos como de la varianza. Reporte el pron\'ostico para los dos casos e interprete los dos resultados (no se pide realizar el pronostic\'o a mano, puede usar los comandos necesarios para realizar el pron\'ostico 1 paso adelante).}
         \begin{tcolorbox}[title=Soluci\'on 2.h]
-            \begin{figure}[H]
-                \centering
-                \includegraphics[width=0.9\linewidth]{output/hist.png}
-                \caption{Gr\'afico Residuales Estandarizados al Cuadrado}
-                \label{fig:graf_residstd2}
-            \end{figure}
+            \input{output/1h_forcast}
+
+            En abril, se espera que el retorno de la TRM sea de 0.935 \%, lo que equivale a un valor pequeño. Sin embargo la varianza para este pron\'onstico es de 6.963, lo que es relativamente alto, e implica que es probable que el retorno en abril se desvie significativamente en cualquier direcci\'on del valor pronosticado. A su vez, es importante aclarar, que en el contexto de la TRM un retorno positivo equivale a un aumento en la misma, lo que implica una depreciaci\'on de la moneda local. Lo que quiere decir que seg\'un el valor pronosticado es mejor comprar cosas denominadas en la moneda extrnajera ahorita, y no esperar a abril, ya que en este periodo se espera que sean m\'as costosas.
         \end{tcolorbox}
     \item {Con el comando apropiado simule mil pron\'osticos del retorno mensual de la TRM para el mes de abril del año 2025. Haga una gr\'afica con su estimaci\'on puntual y con la funci\'on de densidad generada a partir de simulaciones de su modelo autoregresivo de media m\'ovil, indique en la gr\'afica el intervalo del 95\% de confianza: ¿Seg\'un su pron\'ostico, para el mes de abril del año 2025, ser\'ia mejor comprar todo lo relacionado con su viaje hoy o esperar el mes de abril? ¿Con los retornos esperados pronosticados usted espera una apreciaci\'on o una depreciaci\'on del peso frente al d\'olar?}
         \begin{tcolorbox}[title=Soluci\'on 2.i]
-            
+            \begin{figure}[H]
+                \centering
+                \includegraphics[width=0.9\linewidth]{output/hist_sim.png}
+                \caption{Gr\'afico Residuales Estandarizados al Cuadrado}
+                \label{fig:graf_residstd2}
+            \end{figure}
+            En el g\'afico anterior se puede ver la densidad para las 1000 simulaciones de los retornos de la TRM en abril. El intervalo de confianza del 95\% incluye una pequeña porci\'on de retornos negativos (caida de la TRM), sin embargo, la mayor parte del intervalo (y de las simulaciones) arrojaron un valor positivo para el retorno en abril (aumento de la TRM, depreciaci\'on del Peso frente al dolar). Debido a esto, y a pesar de la existencia de una pequeña probabilidad de apreciaci\'on del peso, se recomienda comprar las cosas denominadas en d\'olares en el presente, ya que el promedio de la TRM en abril se espera que sea mayor, lo que encarecer\'ia el valor de estos bienes, por la depreciaci\'on.
         \end{tcolorbox}
     \item {Ahora, todos los valores pronosticados de los retornos de la TRM para el mes de abril del año 2025 calculados en el item anterior, multipl\'iquelos por $\$20.000.000$, con esto obtendr\'a un vector de lo que ganar\'ia (si hay apreciaci\'on) y lo que perder\'ia (si hay depreciaci\'on) si decide esperar un mes y comprar todo lo relacionado con su viaje. Haga una gr\'afica con su estimaci\'on puntual y con la funci\'on de densidad generada a partir de las estimaciones, indique en la gr\'afica el intervalo del 95\% de confianza: ¿Seg\'un su pron\'ostico, usted esperar\'ia o mejor comprar\'ia todo lo relacionado con su viaje en este momento? ¿Teniendo en cuenta todo lo anterior invertir\'ia su dinero en activos asociados a la TRM peso d\'olar? ¿usar\'ia estos modelos para tomar este tipo de decisiones o mejor se guiar\'ia en su experiencia previa como turista?}
         \begin{tcolorbox}[title=Soluci\'on 2.j]
+            \begin{figure}[H]
+                \centering
+                \includegraphics[width=0.9\linewidth]{output/hist_sim_pg.png}
+                \caption{Gr\'afico Residuales Estandarizados al Cuadrado}
+                \label{fig:graf_residstd2}
+            \end{figure}
             
         \end{tcolorbox}
 \end{enumerate}
@@ -457,13 +471,27 @@ Se proponen 4 posibles modelos ARIMAX con tendencia y estacionalidad, empezando 
                 \caption{Residuales al cuadrado posterior a juntar componentes}
                 \label{fig:enter-label}
             \end{figure}
-            La estimación de los residuales al cuadrado del modelo ARIMA seleccionado posterior a unir componentes muestra que la varianza de los residuales, a pesar de presentar ciertos picos inusuales que pueden estar relacionados a choques externos, es constante. Es decir que hay homocedasticidad. Se puede concluir esto debido a que la mayoría de los residuales al cuadrado presentan valores bajos y hay ausencia de repetición cíclica. Por otra parte, la gráfica de la función de autocorrelación (ACF) de los residuales al cuadrado muestra que no hay evidencia de autocorrelación en los residuales debido a que posterior al primer rezago, los coeficientes de autocorreación caen dentro de las bandas de confianza y se mantienen dentro de estas. 
+            La estimación de los residuales al cuadrado del modelo ARIMA seleccionado posterior a unir componentes muestra que la varianza de los residuales, a pesar de presentar ciertos picos inusuales que pueden estar relacionados a choques externos, es constante. Es decir que hay homocedasticidad. Se puede concluir esto debido a que la mayoría de los residuales al cuadrado presentan valores bajos y hay ausencia de repetición cíclica. Por otra parte, la gráfica de la función de autocorrelación (ACF) de los residuales al cuadrado muestra que no hay evidencia de autocorrelación en los residuales debido a que posterior al rezago 0, los coeficientes de autocorrelación caen dentro de las bandas de confianza y se mantienen dentro de estas. Debido a que los residuales no muestran autocorrelación, y que estos oscilan alrededor de 0, se podría afirmar que estos se tratan de ruido blanco. 
             
         \end{tcolorbox}
         
     \item {Pruebe si es necesario incluir din\'amicas de varianza condicional. De ser necesario, est\'imelas y presente sus resultados (puede probar varios modelos, pero debe continuar el desarrollo del taller con uno solo). Justifique con estad\'isticas y criterios de informaci\'on el modelo estimado.}
         \begin{tcolorbox}[title=Soluci\'on 3.g]
-            
+ 
+\begin{table}[H]
+\centering
+\begin{tabular}{|l|c|c|c|}
+\hline
+\textbf{Rezago} & \textbf{P-valor} & \textbf{Estadístico} & \textbf{Valor Crítico} \\
+\hline
+1 Rezagos  & 0.568501841  & 0.325195669  & 3.841458821 \\
+10 Rezagos & 0.539178727  & 8.925599803  & 18.30703805 \\
+15 Rezagos & 0.539771747  & 13.81279866  & 24.99579014 \\
+\hline
+\end{tabular}
+\caption{Prueba de Ljung-Box con residuales al cuadrado}
+\end{table}
+Con el fin de comprobar si es necesario incluir dinámicas de varianza condicional, fue realizada la prueba de Ljung-Box en 5, 10 y 15 rezagos con los residuos al cuadrado debido a que esta permite detectar autocorrelación en la variación de los errores o clusters de varianza. Gracias a los resultados de la prueba, fue posible concluir que no es necesario incluir dinámicas de varianza condicional debido a que los p-valores de los residual al cuadrado en todos los rezagos analizados, son mayores a 0.005, por lo tanto, no hay evidencia estadísticamente significativa de autocorrelación en la variación de los errores, es decir que al no haber heterocedasticidad no debe incorporarse un modelo que incluya la varianza condicional. 
         \end{tcolorbox}
     \item {Pruebe si su modelo captura correctamente las din\'amicas de varianza. Realice y documente las pruebas necesarias.}
         \begin{tcolorbox}[title=Soluci\'on 3.h]
@@ -473,14 +501,24 @@ Se proponen 4 posibles modelos ARIMAX con tendencia y estacionalidad, empezando 
     \begin{enumerate}[label=(\emph{\roman*})]
         \item {Pron\'ostico punto del total de remesas para el año 2025.}
             \begin{tcolorbox}[title=Soluci\'on 3.i.i]
-            
+
+        El pronóstico punto del total de remesas para el 2025, usando el modelo ARIMAX (2,0,9) con homocedasticidad, es de 55.85 millones de COP. 
             \end{tcolorbox}
         \item {Pron\'ostico de intervalo al 95\% de confianza del total de remesas para el año 2025.}
             \begin{tcolorbox}[title=Soluci\'on 3.i.ii]
+
+IC 95%: [48.46 ; 65.75] millones de COP
             
             \end{tcolorbox}
         \item {Pron\'ostico de densidad del total de remesas para el año 2025. Presente sus resultados en un gr\'afico donde pueda leerse el valor de los pron\'osticos (\emph{i}) y (\emph{ii}).}
             \begin{tcolorbox}[title=Soluci\'on 3.i.iii]
+
+       \begin{figure}[H]
+                \centering
+                \includegraphics[width=0.5\linewidth]{docs/Densidad_final.png}
+                \caption{Distribución simulada del total anual de remesas, para 2025}
+                \label{fig:enter-label}
+            \end{figure}
             
             \end{tcolorbox}
     \end{enumerate}
